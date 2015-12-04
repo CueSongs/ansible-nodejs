@@ -1,0 +1,14 @@
+---
+
+- name: Check node Version
+  shell: node -v
+  ignore_errors: yes
+  register: nodev
+
+- name: add nodejs ppa
+  apt_repository: repo='ppa:chris-lea/node.js'
+  when: nodev | failed
+
+- name: install nodejs
+  apt: name=nodejs state=latest
+  when: nodev | failed
