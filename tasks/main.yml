@@ -12,3 +12,7 @@
 - name: install nodejs
   apt: name=nodejs state=latest
   when: nodev | failed
+
+- name: setup Ubuntu Symlink (debug-fix)
+  shell: "ln -s /usr/bin/nodejs /usr/bin/node"
+  sudo: yes
